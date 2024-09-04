@@ -129,36 +129,32 @@ export default function Home() {
                 <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div className="row img-twice position-relative h-100">
                         <div className="col-6">
-                            <img className="img-fluid rounded" src="/assets/img/about-1.jpg" alt=""/>
+                            <img className="img-fluid rounded" src="/assets/img/p.jpg" alt=""/>
                         </div>
                         <div className="col-6 align-self-end">
-                            <img className="img-fluid rounded" src="/assets/img/about-2.jpg" alt=""/>
+                            <img className="img-fluid rounded" src="/assets/img/c.jpg" alt=""/>
                         </div>
                     </div>
                 </div>
                 <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div className="h-100">
-                        <p className="text-primary text-uppercase mb-2">// About Us</p>
-                        <h1 className="display-6 mb-4">We Bake Every Item From The Core Of Our Hearts</h1>
-                        <p>Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
-                        <p>Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
-                        <div className="row g-2 mb-4">
-                            <div className="col-sm-6">
-                                <i className="fa fa-check text-primary me-2"></i>Quality Products
-                            </div>
-                            <div className="col-sm-6">
-                                <i className="fa fa-check text-primary me-2"></i>Custom Products
-                            </div>
-                            <div className="col-sm-6">
-                                <i className="fa fa-check text-primary me-2"></i>Online Order
-                            </div>
-                            <div className="col-sm-6">
-                                <i className="fa fa-check text-primary me-2"></i>Home Delivery
-                            </div>
-                        </div>
-                        <a className="btn btn-primary rounded-pill py-3 px-5" href="https://www.facebook.com/SunnyTanejaBakers/">Read </a>
+                <div className="h-100 bg-gradient-to-r from-yellow-400 via-red-400 to-pink-400 p-8 rounded-lg shadow-lg animate-fadeIn">
+    <h1 className="text-4xl font-bold text-black mb-6 ">We Provide the Best Taste and Quality in Cakes, Pastries, Patties, Pizza, Burgers, and More!</h1>
+    
+    <p className="text-white text-lg leading-relaxed mb-4"> we bake with passion and care, creating beautiful cakes according to your favorite flavors and choices. Every bite is crafted with love to bring joy to your taste buds.</p>
+    
+    <div className="row g-2 mb-6">
+        <div className="col-sm-6 text-white text-lg">
+            <i className="fa fa-check text-yellow-300 mr-2"></i>Quality Products
+        </div>
+        <div className="col-sm-6 text-white text-lg">
+            <i className="fa fa-check text-yellow-300 mr-2"></i>Custom Products
+        </div>
+       
+    </div>
 
-                    </div>
+    <a className="btn bg-white text-pink-500 font-semibold  py-3 px-6 transition-transform duration-300 hover:scale-105 rounded-full" href="https://www.facebook.com/SunnyTanejaBakers/">Read More</a>
+</div>
+
                 </div>
             </div>
         </div>
@@ -169,7 +165,8 @@ export default function Home() {
     <!-- Product Start --> */}
     <div className="container-xxl bg-light my-6 py-6 pt-0">
         <div className="container">
-            <div className="bg-primary text-light rounded-bottom p-5 my-6 mt-0 wow fadeInUp" data-wow-delay="0.1s">
+        <div className="bg-gradient-to-r from-purple-500 via-orange-500 via-black to-red-500 text-light rounded-bottom p-5 my-6 mt-0 wow fadeInUp" data-wow-delay="0.1s">
+
                 <div className="row g-4 align-items-center">
                     <div className="col-lg-6">
                         <h1 className="display-4 text-light mb-0">The Best Bakery In Your City</h1>
@@ -179,7 +176,7 @@ export default function Home() {
                             <i className="fa fa-phone-alt fa-4x flex-shrink-0"></i>
                             <div className="ms-4">
                                 <p className="fs-5 fw-bold mb-0">Call Us</p>
-                                <p className="fs-1 fw-bold mb-0">+012 345 6789</p>
+                                <p className="fs-1 fw-bold mb-0">+91 95689-81068</p>
                             </div>
                         </div>
                     </div>
