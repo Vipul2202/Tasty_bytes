@@ -183,73 +183,30 @@ export default function Home() {
                 </div>
             </div>
             <div className="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style={{maxwidth: "500px"}}>
-                <p className="text-primary text-uppercase mb-2">// Bakery Products</p>
+
                 <h1 className="display-6 mb-4">Explore The Categories Of Our Bakery Products</h1>
             </div>
             <div className="row g-4">
             {product.map((data, index) => (
               <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s" key={index}>
-                <div className="product-item d-flex flex-column bg-white rounded overflow-hidden h-100">
-                  <div className="text-center p-4">
+                <div className="product-item d-flex flex-column bg-purple-700 rounded overflow-hidden h-100">
+                  
+                  <div className="position-relative mt-auto">
+                    <img className="img-fluid " src={BASE_URL_IMG + data?.Image} alt={data.productname} />
+                    <div className="product-overlay">
+                       <Link to={"/single-product/" + `${data?._id}`} className="btn btn-lg-square btn-outline-light rounded-circle" href=""><i className="fa fa-eye text-primary"></i></Link>
+                       <div className="text-center p-4">
                     <div className="d-inline-block border border-primary rounded-pill px-3 mb-3">{data.new_price}{data.old_price}</div>
                     <h3 className="mb-3">{data.productname}</h3>
                     <h4 className="mb-3">{data.category}</h4>
                     <span>{data.description}</span>
                   </div>
-                  <div className="position-relative mt-auto">
-                    <img className="img-fluid" src={BASE_URL_IMG + data?.Image} alt={data.productname} />
-                    <div className="product-overlay">
-                       <Link to={"/single-product/" + `${data?._id}`} className="btn btn-lg-square btn-outline-light rounded-circle" href=""><i className="fa fa-eye text-primary"></i></Link>
                     </div>
+                   
                   </div>
                 </div>
               </div>
             ))}
-                <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div className="product-item d-flex flex-column bg-white rounded overflow-hidden h-100">
-                        <div className="text-center p-4">
-                            <div className="d-inline-block border border-primary rounded-pill px-3 mb-3">$11 - $99</div>
-                            <h3 className="mb-3">Cake</h3>
-                            <span>Tempor erat elitr rebum at clita dolor diam ipsum sit diam amet diam et eos</span>
-                        </div>
-                        <div className="position-relative mt-auto">
-                            <img className="img-fluid" src="/assets/img/product-1.jpg" alt=""/>
-                            <div className="product-overlay">
-                                <a className="btn btn-lg-square btn-outline-light rounded-circle" href=""><i className="fa fa-eye text-primary"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div className="product-item d-flex flex-column bg-white rounded overflow-hidden h-100">
-                        <div className="text-center p-4">
-                            <div className="d-inline-block border border-primary rounded-pill pt-1 px-3 mb-3">$11 - $99</div>
-                            <h3 className="mb-3">Bread</h3>
-                            <span>Tempor erat elitr rebum at clita dolor diam ipsum sit diam amet diam et eos</span>
-                        </div>
-                        <div className="position-relative mt-auto">
-                            <img className="img-fluid" src="/assets/img/product-2.jpg" alt=""/>
-                            <div className="product-overlay">
-                                <a className="btn btn-lg-square btn-outline-light rounded-circle" href=""><i className="fa fa-eye text-primary"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div className="product-item d-flex flex-column bg-white rounded overflow-hidden h-100">
-                        <div className="text-center p-4">
-                            <div className="d-inline-block border border-primary rounded-pill pt-1 px-3 mb-3">$11 - $99</div>
-                            <h4 className="mb-3">Cookies</h4>
-                            <span>Tempor erat elitr rebum at clita dolor diam ipsum sit diam amet diam et eos</span>
-                        </div>
-                        <div className="position-relative mt-auto">
-                            <img className="img-fluid" src="/assets/img/product-3.jpg" alt=""/>
-                            <div className="product-overlay">
-                                <a className="btn btn-lg-square btn-outline-light rounded-circle" href=""><i className="fa fa-eye text-primary"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -261,7 +218,7 @@ export default function Home() {
         <div className="container">
             <div className="row g-5">
                 <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <p className="text-primary text-uppercase mb-2">// Our Services</p>
+                  
                     <h1 className="display-6 mb-4">What Do We Offer For You?</h1>
                     <p className="mb-5">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
                     <div className="row gy-5 gx-4">
