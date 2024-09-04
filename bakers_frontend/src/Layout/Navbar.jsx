@@ -18,13 +18,9 @@ export default function Navbar() {
                 <Link to='/about' className="nav-item nav-link">About</Link>
                 <a href="/service" className="nav-item nav-link">Services</a>
                 <a href="/products" className="nav-item nav-link">Products</a>
+                <a href="/Testmonial" className="nav-item nav-link">Testimonial</a>
                 <div className="nav-item dropdown">
-                    <a href="#" className="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                    <div className="dropdown-menu m-0">
-                        <a href="/Team" className="dropdown-item">Our Team</a>
-                        <a href="/Testmonial" className="dropdown-item">Testimonial</a>
-                        {/* <a href="404.html" className="dropdown-item">404 Page</a> */}
-                    </div>
+
                 </div>
                 <a href="/contact" className="nav-item nav-link">Contact</a>
             </div>
