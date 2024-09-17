@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Button, Pagination, Row, Col } from 'react-bootstrap';
+import axios from 'axios';
 
 export default function ManageReview({ setIsActive, isActive }) {
   const [reviews, setReviews] = useState([]);
@@ -8,22 +9,22 @@ export default function ManageReview({ setIsActive, isActive }) {
 
   useEffect(() => {
     // Hard-coded dummy reviews
-    const dummyReviews = [
-      { id: 1, username: 'Alice', rating: 5, comments: 'Excellent service!' },
-      { id: 2, username: 'Bob', rating: 4, comments: 'Very good, but could be better.' },
-      { id: 3, username: 'Charlie', rating: 3, comments: 'Average experience.' },
-      { id: 4, username: 'David', rating: 2, comments: 'Not satisfied with the product.' },
-      { id: 5, username: 'Eve', rating: 8, comments: 'Horrible experience, will not return.' },
-      { id: 5, username: 'Eve', rating: 8, comments: 'Horrible experience, will not return.' },
-      { id: 5, username: 'Eve', rating: 8, comments: 'Horrible experience, will not return.' },
-    ];
-
-    setReviews(dummyReviews);
+    axios.get("http://localhost:5000/review/all")
+      .then(response => setReviews(response.data.review))
+      .catch(error => console.error(error));
   }, []);
 
-  const handleDelete = (id) => {
-    // Delete review
-    setReviews(reviews.filter(review => review.id !== id));
+  console.log(reviews)
+
+
+
+  const handleDelete = async(_id) => {
+    try{
+      const response = await axios.post(`http://localhost:5000/review/delete/${_id}`);
+      console.log('Success:', response.data);
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   // Pagination logic
@@ -52,14 +53,14 @@ export default function ManageReview({ setIsActive, isActive }) {
               <Col key={review.id} md={6} lg={4} className="mb-3">
                 <Card className="h-100">
                   <Card.Body>
-                    <Card.Title>{review.username}</Card.Title>
+                    <Card.Title>{review.name}</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">
                       Rating: {'⭐'.repeat(review.rating)} ({review.rating}/5)
                     </Card.Subtitle>
                     <Card.Text>
-                      {review.comments}
+                      {review.comment}
                     </Card.Text>
-                    <Button variant="danger" onClick={() => handleDelete(review.id)}>Delete Review</Button>
+                    <Button variant="danger" onClick={() => handleDelete(review._id)}>Delete Review</Button>
                   </Card.Body>
                 </Card>
               </Col>

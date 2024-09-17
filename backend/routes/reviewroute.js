@@ -4,5 +4,5 @@ const {addReview,getallReview,deleteReview}=require('../Controller/ReviewControl
 
 router.post("/add",addReview)
 router.get("/all",getallReview)
-router.delete("/delete/:id",deleteReview)
+router.post("/delete/:id",deleteReview)
 module.exports =router

@@ -296,8 +296,10 @@ app.use(express.static(__dirname + "/public"))
 
 const adminroutes = require("./routes/adminroutes")
 const bannerRoutes = require("./routes/bannerRoute")
+const reviewRoutes = require("./routes/reviewroute")
 app.use("/admin", adminroutes)
 app.use("/banner", bannerRoutes)
+app.use("/review", reviewRoutes)
 
 const seeder = require('./config/seeder')
 seeder.adminseeder()

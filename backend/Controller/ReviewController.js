@@ -100,7 +100,8 @@ updateReview = async (req, res) => {
 };
 
 // Controller to delete a review
-deleteReview = async (req, res) => {
+const deleteReview = async (req, res) => {
+  console.log(req.params)
   try {
     const {id}=req.params
     const review = await Review.findByIdAndDelete(id);
