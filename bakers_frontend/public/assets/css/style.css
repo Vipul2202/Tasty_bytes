@@ -262,10 +262,10 @@ h6,
 .product-item {
     transition: .5s;
 }
-
+/* 
 .product-item:hover {
     background: var(--primary) !important;
-}
+} */
 
 .product-item:hover * {
     color: var(--light);

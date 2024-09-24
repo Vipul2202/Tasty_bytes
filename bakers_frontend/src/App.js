@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from './Pages/Home';
 import Error from './Pages/Error';
 import About from './Pages/About';
-import Service from './Pages/Service';
+// import Service from './Pages/Service';
 import Contact from './Pages/Contact';
 import Product from './Pages/Product';
 import Team from './Pages/Team';
@@ -19,7 +19,7 @@ function App() {
         <Route path="/" element={<Master />}>
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
-        <Route path='/service' element={<Service/>} />
+        {/* <Route path='/service' element={<Service/>} /> */}
         <Route path='/contact' element={<Contact/>} />
         <Route path='/products' element={<Product/>} />
         <Route path='/Team' element={<Team/>} />

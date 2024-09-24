@@ -165,11 +165,11 @@ export default function Home() {
     <!-- Product Start --> */}
     <div className="container-xxl bg-light my-6 py-6 pt-0">
         <div className="container">
-        <div className="bg-gradient-to-r from-purple-500 via-orange-500 via-black to-red-500 text-light rounded-bottom p-5 my-6 mt-0 wow fadeInUp" data-wow-delay="0.1s">
+        <div className="bg-gradient-to-r from-yellow-400 via-red-400 to-pink-400 text-light rounded-bottom p-5 my-6 mt-0 wow fadeInUp" data-wow-delay="0.1s">
 
                 <div className="row g-4 align-items-center">
                     <div className="col-lg-6">
-                        <h1 className="display-4 text-light mb-0">The Best Bakery In Your City</h1>
+                        <h1 className="display-4 text-light mb-0">The Best Bakery In Your City && (Village)</h1>
                     </div>
                     <div className="col-lg-6 text-lg-end">
                         <div className="d-inline-flex align-items-center text-start">
@@ -188,11 +188,11 @@ export default function Home() {
             </div>
             <div className="row g-4">
             {product.map((data, index) => (
-              <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s" key={index}>
-                <div className="product-item d-flex flex-column bg-purple-700 rounded overflow-hidden h-100">
+              <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.9s" key={index}>
+                <div className="product-item d-flex flex-column rounded overflow-hidden ">
                   
                   <div className="position-relative mt-auto">
-                    <img className="img-fluid " src={BASE_URL_IMG + data?.Image} alt={data.productname} />
+                    <img className="img-fluid w-full h-96 " src={BASE_URL_IMG + data?.Image} alt={data.productname} />
                     <div className="product-overlay">
                        <Link to={"/single-product/" + `${data?._id}`} className="btn btn-lg-square btn-outline-light rounded-circle" href=""><i className="fa fa-eye text-primary"></i></Link>
                        <div className="text-center p-4">
@@ -277,7 +277,7 @@ export default function Home() {
 
 
     <!-- Team Start --> */}
-    <div className="container-xxl py-6">
+    {/* <div className="container-xxl py-6">
         <div className="container">
             <div className="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style={{maxwidth: "500px"}}>
                 <p className="text-primary text-uppercase mb-2">// Our Team</p>
@@ -350,12 +350,12 @@ export default function Home() {
                 </div>
             </div>
         </div>
-    </div>
+    </div> */}
     {/* <!-- Team End -->
 
 
     <!-- Testimonial Start --> */}
-    <div className="container-xxl bg-light my-6 py-6 pb-0">
+    {/* <div className="container-xxl bg-light my-6 py-6 pb-0">
         <div className="container">
             <div className="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style={{maxwidth: "500px"}}>
                 <p className="text-primary text-uppercase mb-2">// Client's Review</p>
@@ -417,7 +417,7 @@ export default function Home() {
                 </div>
             </div>
         </div>
-    </div>
+    </div> */}
     {/* <!-- Testimonial End --> */}
 
 <ToastContainer/>
