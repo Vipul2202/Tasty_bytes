@@ -6,6 +6,10 @@ export default function ManageReview({ setIsActive, isActive }) {
   const [reviews, setReviews] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const reviewsPerPage = 6;
+let a = axios.get("http://localhost:5000/review/all")
+.then(response => setReviews(response.data.review))
+.catch(error => console.error(error));
+console.log("yeh mera data hai",a);
 
   useEffect(() => {
     // Hard-coded dummy reviews

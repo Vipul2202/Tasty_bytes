@@ -18,7 +18,7 @@ const Team = () => {
     };
 
     const validateContact = (contact) => {
-      const regex = /^\d{10}$/;
+      const regex = /^\d{11,12}$/;
       return regex.test(contact);
     };
 
@@ -41,11 +41,11 @@ const Team = () => {
       }
 
       if (!validateContact(contact)) {
-        toast.error("Please enter a valid 10-digit contact number");
+        toast.error("Please enter a valid contact number");
         return;
       }
 
-      if (subject.length > 500) {
+      if (subject.length > 10) {
         toast.error("Subject cannot exceed 500 characters");
         return;
       }

@@ -138,7 +138,7 @@ export default function AdminSidebar({ setIsActive, isActive }) {
   
   {/* <!-- End Icons Nav --> */}
 
-  <li className="nav-heading text-start">Pages</li>
+  {/* <li className="nav-heading text-start">Pages</li> */}
 {/* 
  
   <li className="nav-item">
@@ -168,12 +168,12 @@ export default function AdminSidebar({ setIsActive, isActive }) {
  
   {/* <!-- End Login Page Nav --> */}
 
-  <li className="nav-item">
+  {/* <li className="nav-item">
     <Link className="nav-link collapsed" to="/admin/error">
       <i className="bi bi-dash-circle"></i>
       <span>Error 404</span>
     </Link>
-  </li>
+  </li> */}
   {/* <!-- End Error 404 Page Nav --> */}
 
 

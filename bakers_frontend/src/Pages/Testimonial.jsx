@@ -39,12 +39,16 @@ const Testimonial = () => {
       console.error("Error submitting review:", error);
     }
   };
-
+let a = axios.get("http://localhost:5000/review/all")
+.then(response => setReviews(response.data.review))
+.catch(error => console.error(error));
+console.log("my console",a);
   // Fetch reviews from backend on component mount
   useEffect(() => {
     axios.get("http://localhost:5000/review/all")
       .then(response => setReviews(response.data.review))
       .catch(error => console.error(error));
+      
   }, []);
 
   return (
