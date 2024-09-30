@@ -3,7 +3,9 @@ import apiServices, { BASE_URL_IMG } from '../ApiServices/ApiServices'
 import { toast, ToastContainer } from 'react-toastify'
 import { Link } from "react-router-dom";
 import axios from "axios";
-import cake from "../photo/cake.jpg"
+import cake from "../photo/cake.jpg";
+
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 export default function Home() {
 
         const [product, setProduct] = useState([]);
@@ -12,7 +14,7 @@ export default function Home() {
         useEffect(()=>{
             const getbanner= async ()=>{
                 try {
-                    const res = (await axios.get("http://localhost:5000/banner/showbanner"))
+                    const res = (await axios.get("http://localhost:5001/banner/showbanner"))
                     setUrl(res)
                     
                     
@@ -214,6 +216,7 @@ export default function Home() {
 
 
     <!-- Service Start --> */}
+    
     <div className="container-xxl py-6">
         <div className="container">
             <div className="row g-5">

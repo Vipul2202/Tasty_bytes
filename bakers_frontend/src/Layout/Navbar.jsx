@@ -38,7 +38,7 @@ export default function Navbar() {
         <button type="button" className="navbar-toggler me-4" onClick={toggleSidebar}>
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className={`collapse navbar-collapse ${isSidebarOpen ? "show" : ""}`} id="navbarCollapse">
+        <div className={`collapse navbar-collapse font-bold ${isSidebarOpen ? "show" : ""}`} id="navbarCollapse">
           <div className="navbar-nav mx-auto p-4 p-lg-0">
             <Link to="/" className="nav-item nav-link active">Home</Link>
             <Link to="/about" className="nav-item nav-link">About</Link>

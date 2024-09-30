@@ -9,9 +9,7 @@ export default function About() {
             <h1 className="display-4 text-white animated slideInDown mb-3">About Us</h1>
             <nav aria-label="breadcrumb animated slideInDown">
                 <ol className="breadcrumb justify-content-center mb-0">
-                    <li className="breadcrumb-item"><a className="text-white" href="#">Home</a></li>
-                    <li className="breadcrumb-item"><a className="text-white" href="#">Pages</a></li>
-                    <li className="breadcrumb-item text-primary active" aria-current="page">About</li>
+<p className='text-white font-extrabold font-serif text-2xl'>Indulge in the finest, freshly baked delights at Shree Krishna Bakers, where every bite is a celebration of taste and quality!</p>
                 </ol>
             </nav>
         </div>

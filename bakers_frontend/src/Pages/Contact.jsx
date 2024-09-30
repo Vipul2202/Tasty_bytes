@@ -88,26 +88,11 @@ const Team = () => {
         >
           <div className="container text-center pt-5 pb-3">
             <h1 className="display-4 text-white animated slideInDown mb-3">
-              Our Team
+              Contact Us
             </h1>
             <nav aria-label="breadcrumb animated slideInDown">
               <ol className="breadcrumb justify-content-center mb-0">
-                <li className="breadcrumb-item">
-                  <a className="text-white" href="#">
-                    Home
-                  </a>
-                </li>
-                <li className="breadcrumb-item">
-                  <a className="text-white" href="#">
-                    Pages
-                  </a>
-                </li>
-                <li
-                  className="breadcrumb-item text-primary active"
-                  aria-current="page"
-                >
-                  Our Team
-                </li>
+                <p className='text-white shadow-2xl font-bold font-serif text-2xl'>Got a query? We're here to help make your experience perfect</p>
               </ol>
             </nav>
           </div>
