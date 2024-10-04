@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
-import { FaUserCircle } from "react-icons/fa"; // User icon
 import axios from 'axios';
 
 const Testimonial = () => {
@@ -25,29 +24,47 @@ const Testimonial = () => {
       return;
     }
 
+    const formData = new FormData();
+    formData.append('access_key', 'a23ceab4-c3ad-4671-9a7a-906d0c83d86a');
+    formData.append('name', name);
+    formData.append('email', email);
+    formData.append('comment', comment);
+    formData.append('rating', rating);
+
     try {
-      const response = await axios.post("http://localhost:5001/review/add", {
-        name,
-        email,
-        rating,
-        comment
+      const response = await axios.post("https://api.web3forms.com/submit", formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
       });
       console.log(response.data);
-      setReviews([...reviews, { name, email, rating, comment }]);
-      setName("");
-      setEmail("");
-      setComment("");
-      setRating(0);
+      if (response.data.success) {
+        alert("Review submitted successfully!");
+        setReviews([...reviews, { name, email, rating, comment }]);
+        setName("");
+        setEmail("");
+        setComment("");
+        setRating(0);
+      } else {
+        alert("Failed to submit review. Please try again.");
+      }
     } catch (error) {
-      console.error("Error submitting review:", error);
+      console.error("Error submitting review:", error.response ? error.response.data : error.message);
     }
   };
 
   // Fetch reviews from backend on component mount
   useEffect(() => {
-    axios.get("http://localhost:5001/review/all")
-      .then(response => setReviews(response.data.review))
-      .catch(error => console.error(error));
+    const fetchReviews = async () => {
+      try {
+        const response = await axios.get("http://localhost:5001/review/all");
+        setReviews(response.data.review);
+      } catch (error) {
+        console.error("Error fetching reviews:", error);
+      }
+    };
+
+    fetchReviews();
   }, []);
 
   // Calculate the number of pages needed
@@ -58,16 +75,6 @@ const Testimonial = () => {
 
   return (
     <div className="testimonial-container">
-      <div className="container-fluid page-header py-6 wow fadeIn" data-wow-delay="0.1s">
-        <div className="container text-center pt-5 pb-3">
-          <h1 className="display-4 text-white animated slideInDown mb-3">Testimonial</h1>
-          <nav aria-label="breadcrumb animated slideInDown">
-            <ol className="breadcrumb justify-content-center mb-0">
-              <p className='text-white font-serif text-2xl font-bold'>Your reviews inspire us! We’re dedicated to fulfilling your cravings and making every bite better than the last</p>
-            </ol>
-          </nav>
-        </div>
-      </div>
       <h2 className="text-3xl font-bold text-center my-6">Customer Testimonials</h2>
 
       {/* Review submission form */}
@@ -126,8 +133,8 @@ const Testimonial = () => {
         </button>
       </form>
 
-      {/* Display of reviews in a single row with pagination */}
-      <div className="reviews-list flex flex-wrap justify-center gap-4  mt-8">
+      {/* Display of reviews */}
+      <div className="reviews-list flex flex-wrap justify-center gap-4 mt-8">
         {displayedReviews.length > 0 ? (
           displayedReviews.map((review, index) => (
             <div key={index} className="p-4 bg-gray-200 shadow-lg rounded-lg flex flex-col items-start w-80">
@@ -135,14 +142,12 @@ const Testimonial = () => {
               <p className="text-gray-500">{review.email}</p>
               <p>{review.comment}</p>
               <div className="flex mb-2">
-                
                 {[...Array(5)].map((_, i) => (
                   <span key={i}>
                     {i < review.rating ? <AiFillStar className="text-yellow-400" /> : <AiOutlineStar />}
                   </span>
                 ))}
               </div>
-             
             </div>
           ))
         ) : (
@@ -150,7 +155,7 @@ const Testimonial = () => {
         )}
       </div>
 
-      {/* Pagination Controls */}   
+      {/* Pagination Controls */}
       <div className="flex justify-center mt-6">
         {Array.from({ length: totalPages }).map((_, pageIndex) => (
           <button
