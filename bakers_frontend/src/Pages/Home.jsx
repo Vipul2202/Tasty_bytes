@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from "react";
 import apiServices, { BASE_URL_IMG } from '../ApiServices/ApiServices'
 import { toast, ToastContainer } from 'react-toastify'
-import { Link } from "react-router-dom";
+import { Link ,useParams } from "react-router-dom";
 import axios from "axios";
 import cake from "../photo/cake.jpg";
 
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+
+import ReviewsList from "./SingleProduct/ReviewList";
 export default function Home() {
+    const {id} = useParams();
+    console.log("id",id);
+    
+  
 
         const [product, setProduct] = useState([]);
         const [loading, setLoading] = useState(true);
@@ -14,7 +20,7 @@ export default function Home() {
         useEffect(()=>{
             const getbanner= async ()=>{
                 try {
-                    const res = (await axios.get("http://localhost:5001/banner/showbanner"))
+                    const res = (await axios.get("http://localhost:5000/banner/showbanner"))
                     setUrl(res)
                     
                     
@@ -51,6 +57,23 @@ export default function Home() {
                   toast.error("Something went wrong");
               });
             }, [loading]);
+            const [reviews, setReviews] = useState([]);
+            const [currentPage, setCurrentPage] = useState(0);
+            const reviewsPerPage = 3;
+          
+            useEffect(() => {
+              const fetchReviews = async () => {
+                try {
+                  const response = await axios.get("http://localhost:5000/review/all");
+                  setReviews(response.data.review);
+                } catch (error) {
+                  console.error(error);
+                }
+              };
+              fetchReviews();
+            }, []);
+            const totalPages = Math.ceil(reviews.length / reviewsPerPage);
+            const displayedReviews = reviews.slice(currentPage * reviewsPerPage, (currentPage + 1) * reviewsPerPage);
   return (
    <>
     
@@ -122,9 +145,20 @@ export default function Home() {
         </div>
     </div>
     {/* <!-- Facts End -->
+    
 
 
     {/* <!-- About Start --> */} 
+    {/* our customer review start */}
+    <div >
+        <p className="text-2xl text-black  font-extrabold  font-mono">Our Customer Reviews</p>
+    <ReviewsList 
+        displayedReviews={displayedReviews} 
+        currentPage={currentPage} 
+        setCurrentPage={setCurrentPage} 
+        totalPages={totalPages} 
+      />
+      </div>
     <div className="container-xxl py-6">
         <div className="container">
             <div className="row g-5">
@@ -162,8 +196,6 @@ export default function Home() {
         </div>
     </div>
     {/* <!-- About End -->
-
-
     <!-- Product Start --> */}
     <div className="container-xxl bg-light my-6 py-6 pt-0">
         <div className="container">
@@ -212,6 +244,10 @@ export default function Home() {
             </div>
         </div>
     </div>
+         
+
+ 
+    
     {/* <!-- Product End -->
 
 

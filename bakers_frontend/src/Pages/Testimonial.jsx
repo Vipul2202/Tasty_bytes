@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+import { FaUserCircle } from "react-icons/fa"; // User icon
+import { BsCheckCircle } from "react-icons/bs"; // Check icon
+import { useNavigate } from 'react-router-dom'; // For page navigation
 import axios from 'axios';
 
 const Testimonial = () => {
@@ -9,7 +12,9 @@ const Testimonial = () => {
   const [comment, setComment] = useState("");
   const [reviews, setReviews] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
+  const [showPopup, setShowPopup] = useState(false); // Modal visibility
   const reviewsPerPage = 3; // Number of reviews to show per page
+  const navigate = useNavigate(); // For page navigation
 
   // Handle star rating click
   const handleStarClick = (index) => {
@@ -24,47 +29,36 @@ const Testimonial = () => {
       return;
     }
 
-    const formData = new FormData();
-    formData.append('access_key', 'a23ceab4-c3ad-4671-9a7a-906d0c83d86a');
-    formData.append('name', name);
-    formData.append('email', email);
-    formData.append('comment', comment);
-    formData.append('rating', rating);
-
     try {
-      const response = await axios.post("https://api.web3forms.com/submit", formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
+      const response = await axios.post("http://localhost:5000/review/add", {
+        name,
+        email,
+        rating,
+        comment
       });
       console.log(response.data);
-      if (response.data.success) {
-        alert("Review submitted successfully!");
-        setReviews([...reviews, { name, email, rating, comment }]);
-        setName("");
-        setEmail("");
-        setComment("");
-        setRating(0);
-      } else {
-        alert("Failed to submit review. Please try again.");
-      }
+      setReviews([...reviews, { name, email, rating, comment }]);
+      setName("");
+      setEmail("");
+      setComment("");
+      setRating(0);
+      setShowPopup(true); // Show popup on successful submission
+
+      // Close popup after 3 seconds and navigate to home
+      setTimeout(() => {
+        setShowPopup(false);
+        navigate('/'); // Redirect to home page
+      }, 3000);
     } catch (error) {
-      console.error("Error submitting review:", error.response ? error.response.data : error.message);
+      console.error("Error submitting review:", error);
     }
   };
 
   // Fetch reviews from backend on component mount
   useEffect(() => {
-    const fetchReviews = async () => {
-      try {
-        const response = await axios.get("http://localhost:5001/review/all");
-        setReviews(response.data.review);
-      } catch (error) {
-        console.error("Error fetching reviews:", error);
-      }
-    };
-
-    fetchReviews();
+    axios.get("http://localhost:5000/review/all")
+      .then(response => setReviews(response.data.review))
+      .catch(error => console.error(error));
   }, []);
 
   // Calculate the number of pages needed
@@ -75,6 +69,18 @@ const Testimonial = () => {
 
   return (
     <div className="testimonial-container">
+      <div className="container-fluid page-header py-6 wow fadeIn" data-wow-delay="0.1s">
+        <div className="container text-center pt-5 pb-3">
+          <h1 className="display-4 text-white animated slideInDown mb-3">Testimonial</h1>
+          <nav aria-label="breadcrumb animated slideInDown">
+            <ol className="breadcrumb justify-content-center mb-0">
+              <p className='text-white font-serif text-2xl font-bold'>
+                Your reviews inspire us! We’re dedicated to fulfilling your cravings and making every bite better than the last
+              </p>
+            </ol>
+          </nav>
+        </div>
+      </div>
       <h2 className="text-3xl font-bold text-center my-6">Customer Testimonials</h2>
 
       {/* Review submission form */}
@@ -125,7 +131,7 @@ const Testimonial = () => {
           </div>
         </div>
 
-        <button
+        <button 
           type="submit"
           className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
         >
@@ -133,40 +139,16 @@ const Testimonial = () => {
         </button>
       </form>
 
-      {/* Display of reviews */}
-      <div className="reviews-list flex flex-wrap justify-center gap-4 mt-8">
-        {displayedReviews.length > 0 ? (
-          displayedReviews.map((review, index) => (
-            <div key={index} className="p-4 bg-gray-200 shadow-lg rounded-lg flex flex-col items-start w-80">
-              <h3 className="text-lg font-bold">{review.name}</h3>
-              <p className="text-gray-500">{review.email}</p>
-              <p>{review.comment}</p>
-              <div className="flex mb-2">
-                {[...Array(5)].map((_, i) => (
-                  <span key={i}>
-                    {i < review.rating ? <AiFillStar className="text-yellow-400" /> : <AiOutlineStar />}
-                  </span>
-                ))}
-              </div>
-            </div>
-          ))
-        ) : (
-          <p className="text-center text-gray-500">No reviews yet. Be the first to leave a review!</p>
-        )}
-      </div>
-
-      {/* Pagination Controls */}
-      <div className="flex justify-center mt-6">
-        {Array.from({ length: totalPages }).map((_, pageIndex) => (
-          <button
-            key={pageIndex}
-            onClick={() => setCurrentPage(pageIndex)}
-            className={`mx-1 px-3 py-1 rounded ${currentPage === pageIndex ? 'bg-blue-500 text-white' : 'bg-gray-300 text-gray-700'}`}
-          >
-            {pageIndex + 1}
-          </button>
-        ))}
-      </div>
+      {/* Success Popup Modal */}
+      {showPopup && (
+        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+            <BsCheckCircle className="text-green-500 text-5xl mx-auto mb-4" />
+            <h2 className="text-xl font-semibold mb-2">Thank You!</h2>
+            <p className="text-gray-700">Your review has been submitted.</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
